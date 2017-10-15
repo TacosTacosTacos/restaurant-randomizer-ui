@@ -3,8 +3,8 @@ Restaurant Randomizer UI README
 ## Description
 A website that is used to randomly pick a location to eat based on user preferences and set location.  I based it off of stuff I have seen similar simple crud learning apps that I have seen online.  I have a use for it because some of my coworkers can't always decided where they want to go to get food.
 
-## Game url
-TODO: Fill out
+## Website UI URL
+https://tacostacostacos.github.io/restaurant-randomizer-ui/
 
 ## Technologies Used
 HTML 5, CSS3, Bootstap 3, SASS
