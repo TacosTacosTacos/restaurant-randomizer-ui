@@ -1,25 +1,130 @@
 <!DOCTYPE html>
+<!-- Restaurant Randomizer - UI
+Created by: Tacos-Tacos-Tacos
+-->
 <html>
-    <head>
-      <title>Example</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>Restaurant Randomizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body class="container-fluid">
-      <h1>Example</h1>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
-    </body>
+<body class="container-fluid">
+
+  <!-- This is the initial page displayed to the user when they load the website.
+It is used for login and signup -->
+  <section id="secHomeLoggedOut">
+
+    <form id="sign-in" class="sign-in form-btm-pdng container col-xs-12">
+      <fieldset>
+        <legend>Existing User</legend>
+        <div class="form-group">
+          <div id="messageExisting" style="display:none" class="form-group alert-danger"></div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email: </label>
+          <input type="email" name="credentials[email]" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password: </label>
+          <input type="password" name="credentials[password]" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+          <input type="submit" name="submit" class="btn btn-primary" value="Sign in!">
+        </div>
+      </fieldset>
+    </form>
+
+    <form id="sign-up" class="col-xs-12">
+      <fieldset>
+        <legend>New User</legend>
+        <div id="messageNew" class="form-group"></div>
+        <div class="form-group">
+          <label for="">Email: </label>
+          <input type="email" name="credentials[email]" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <label for="">Password: </label>
+          <input type="password" name="credentials[password]" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+          <label for="">Confirm Password: </label>
+          <input type="password" name="credentials[password_confirmation]" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+          <input type="submit" name="submit" class="btn btn-primary" value="Sign up!">
+        </div>
+      </fieldset>
+    </form>
+  </section>
+
+  <!-- This page is mainly used for changing passwords. -->
+  <section id="secUserPreferences">
+    <!-- Set Location -->
+
+    <!-- Restaurant Blacklist -->
+    <form id="removeRestaurantCategories" class="col-xs-12 form-btm-pdng">
+      <fieldset>
+        <legend>Remove A Restaurant Category</legend>
+        <p class="removeCategoryInstructions">Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
+        <div id="messageRemoveFoodCategories" class="form-group" style="display:none"></div>
+        <!-- Food 4d4b7105d754a06374d81259 -->
+        <select multiple name="blacklist[categories]" class="form-group" size="11">
+        <!-- TODO: Remove selected option.  Expand Size if too small-->
+          <option value="4bf58dd8d48988d14e941735" selected>American</option>
+          <option value="4bf58dd8d48988d145941735">Chinese</option>
+          <option value="4bf58dd8d48988d111941735">Japanese</option>
+          <option value="4bf58dd8d48988d10f941735">Indian</option>
+          <option value="4bf58dd8d48988d113941735">Korean</option>
+          <option value="4bf58dd8d48988d14a941735">Vietnamese</option>
+          <option value="4bf58dd8d48988d10d941735">German</option>
+          <option value="4bf58dd8d48988d10e941735">Greek</option>
+          <option value="4bf58dd8d48988d110941735">Italian</option>
+          <option value="4bf58dd8d48988d1c1941735">Mexican</option>
+          <option value="4bf58dd8d48988d115941735">Middle Eastern</option>
+        </select>
+        <br>
+        <input type="submit" name="submit" class="btn btn-primary" value="Remove Food Categories">
+      </fieldset>
+    </form>
+
+    <!-- Change Password -->
+    <form id="change-password" class="col-xs-12">
+      <fieldset>
+        <legend>Change Your Password</legend>
+        <div id="messageChangePassword" class="form-group" style="display:none"></div>
+        <div class="form-group">
+          <label for="">Old Password:</label>
+          <input type="password" name="passwords[old]" class="chgpass" placeholder="Old Password" required>
+        </div>
+        <div class="form-group">
+          <label for="">New Password:</label>
+          <input type="password" name="passwords[new]" class="chgpass" placeholder="New Password" required>
+        </div>
+        <input type="submit" name="submit" class="btn btn-primary" value="Change Password">
+      </fieldset>
+    </form>
+
+  </section>
+
+  <!-- This section is for displaying the semi-randomly selected restaurant -->
+  <section id="secRestaurantDisplay" class="col-xs-12">
+    <!-- TODO: Create Restaurant Display.
+    Section for displaying results of API query plus Reroll button -->
+  </section>
+
+  <!-- This section is for displaying the nav for Signout and User Preferences -->
+  <section id="secNav" class="col-xs-12">
+    <!-- TODO: Create Temporary Nav Buttons -->
+
+  </section>
+
+</body>
+
 </html>
