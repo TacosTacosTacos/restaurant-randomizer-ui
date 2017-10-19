@@ -1,11 +1,20 @@
 'use strict'
 const store = require('../store.js')
 const reuse = require('../reuse/reuse.js')
+const navUi = require('../nav/ui.js')
+const navEvents = require('../nav/events.js')
 
 const signInSuccess = function (data) {
-  $('#messageExisting').text('')
   store.user = data.user
+  $('#messageExisting').text('')
+  // Navigate the user to the display section of the application
+  navUi.navSigningIn()
+  navEvents.addAllNavHandlers()
+  // TODO: Show loading animation
+
+  // TODO: Call the retrieve data from fourSquare on sign in function from restraunt-display event
 }
+
 const signInFailure = function (error) {
   console.error(error)
   if (error.status === 401) {
