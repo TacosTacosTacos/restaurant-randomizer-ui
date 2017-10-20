@@ -1,34 +1,43 @@
 'use strict'
 
 const getFormFields = require(`../../../lib/get-form-fields`)
+const store = require('../store.js')
+const preferenceAPI = require('./api.js')
+const preferenceUi = require('./ui.js')
 
 const onUpdatePreferences = function (event) {
   const data = getFormFields(this)
-  console.log(data)
-  // console.log(data.preferences)
-  // const selectedCategoryValues = $('.categories').val()
-  // console.log(selectedCategoryValues)
 
-  // Compare previously retrieved values vs selected values
-
-  // Determine Category delete and update calls.  Alternatively do no calls
-
-  // Determine if changes needed to preference table and make insert, update, or no calls
-
-  // If all needed calls are successful, then update the fourSquare data
-
-  // Determine the venue limit for each foursquare call
-  // const fourSquareVenueLimitPerCall = Math.floor(50 / selectedCategoryValues.length)
-  // console.log(fourSquareVenueLimitPerCall)
-
+  if (store.user.preference) {
+    // Preferences record exists.  Update
+    preferenceAPI.updatePreference(data)
+      .then(preferenceUi.preferenceUpdateSuccess)
+      .catch(preferenceUi.preferenceFailure)
+  } else {
+    // Preferences record exists.  Insert
+    preferenceAPI.createPreference(data)
+      .then(preferenceUi.preferenceCreateSuccess)
+      .catch(preferenceUi.preferenceFailure)
+  }
   event.preventDefault()
-  // preferencesApi.changePassword(data)
-  //   .then(ui.changePasswordSuccess)
-  //   .catch(ui.changePasswordFailure)
+}
+
+const onDeletePreferences = function (event) {
+  if (store.user.preference) {
+    // Preferences available for deletion
+    preferenceAPI.deletePreference()
+      .then(preferenceUi.preferenceDeleteSuccess)
+      .catch(preferenceUi.preferenceFailure)
+  } else {
+    // Preferences don't exist
+    preferenceUi.preferenceDoNotExist()
+  }
+  event.preventDefault()
 }
 
 const addHandlers = function () {
   $('#changeRestaurantPreferences').on('submit', onUpdatePreferences)
+  $('#stupidDeletionButton').on('click', onDeletePreferences)
 }
 
 module.exports = {

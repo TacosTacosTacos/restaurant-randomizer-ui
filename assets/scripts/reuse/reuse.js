@@ -25,6 +25,10 @@ const emptyMultipleTextFields = (stringArray) => {
   stringArray.forEach((id) => { $(id).text('') })
 }
 
+const removeValMultipleTextFields = (stringArray) => {
+  stringArray.forEach((id) => { $(id).val('') })
+}
+
 const updateFieldAddRemoveClassMessage = (fieldIDStr, newTextStr, addClassStr, removeClassStr) => {
 // Example Call: updateFieldAddRemoveClassMessage('#messageNew', 'Signed up successfully', 'alert-success', 'alert-danger')
   $(fieldIDStr).text(newTextStr)
@@ -40,5 +44,6 @@ module.exports = {
   hideMultipleFields,
   emptyMultipleTextFields,
   updateFieldAddRemoveClassMessage,
-  showMultipleFields
+  showMultipleFields,
+  removeValMultipleTextFields
 }
