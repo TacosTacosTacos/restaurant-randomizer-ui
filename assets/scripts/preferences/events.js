@@ -4,7 +4,6 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 const store = require('../store.js')
 const preferenceAPI = require('./api.js')
 const preferenceUi = require('./ui.js')
-const reuse = require('../reuse/reuse.js')
 
 const determineUserCategoryChanges = (insertOrDelete) => {
   let selectedCategoryIdValues = ($('.categories').val()).map((category) => { return parseInt(category) })

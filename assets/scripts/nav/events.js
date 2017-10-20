@@ -5,12 +5,13 @@ const uiNav = require('./ui.js')
 const uiAuth = require('../auth/ui.js')
 const store = require('../store.js')
 const home = (event) => {
-  console.log(store.user.preference)
-  uiNav.navHome()
+  if (store.user.preference) {
+    uiNav.navHome()
+  }
 }
 
 const preferences = (event) => {
-  if (store.user != null) {
+  if (store.user) {
     uiNav.navPreferences()
   }
 }
@@ -23,10 +24,10 @@ const onSignOut = (event) => {
 }
 
 const signOut = (event) => {
-  if (store.user != null) {
+  if (store.user) {
     onSignOut(event)
     uiNav.navSignOut()
-    removeAllNavHandlers()
+    // removeAllNavHandlers()
   }
 }
 
@@ -39,11 +40,11 @@ const addAllNavHandlers = function () {
   $('#navSignOut').on('click', signOut)
 }
 
-const removeAllNavHandlers = function () {
-  $('#navHome').off('click', home)
-  $('#navPreferences').off('click', preferences)
-  $('#navSignOut').off('click', signOut)
-}
+// const removeAllNavHandlers = function () {
+//   $('#navHome').off('click', home)
+//   $('#navPreferences').off('click', preferences)
+//   $('#navSignOut').off('click', signOut)
+// }
 module.exports = {
   addAllNavHandlers,
   addHomeHandler

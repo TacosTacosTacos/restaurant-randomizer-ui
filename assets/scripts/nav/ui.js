@@ -68,6 +68,7 @@ const navSignOut = () => {
 
   // TODO: Hide other error sub-sections and fields to give the next user a fresh start
   // reuse.hideMultipleFields([])
+  $('option').removeAttr('selected')
 
   reuse.addDisableClassNavArray(['.home', '.preferences', '.signout'])
 
@@ -80,7 +81,7 @@ const navSignOut = () => {
   $('#messageUpdatePreferences').removeClass('alert-danger')
   $('#messageUpdatePreferences').removeClass('alert-success')
   // Clear the data store
-  store.user = null
+  store.user = ''
 }
 
 module.exports = {
