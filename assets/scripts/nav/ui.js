@@ -16,6 +16,10 @@ const navSigningIn = () => {
     $('#preferenceLocation').val(store.user.preference.location)
     $('#preferenceSearchRadius').val(store.user.preference.search_radius)
 
+    store.user.user_selected_categories.map((category) => {
+      $('#categoryId' + category.id).attr('selected', 'selected')
+    })
+
     $('#secRestaurantDisplay').show()
     reuse.removeDisabledClassesNavArray(['.home', '.preferences', '.signout'])
     reuse.removeActiveClassesNavArray(['.home', '.preferences', '.signout'])

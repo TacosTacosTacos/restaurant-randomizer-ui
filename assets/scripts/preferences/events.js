@@ -69,18 +69,17 @@ const onUpdatePreferences = function (event) {
     })
   }
 
-  // TODO: REENABLE THIS CODE
-  //   if (store.user.preference) {
-  //     // Preferences record exists.  Update
-  //     preferenceAPI.updatePreference(data)
-  //       .then(preferenceUi.preferenceUpdateSuccess)
-  //       .catch(preferenceUi.preferenceFailure)
-  //   } else {
-  //     // Preferences record exists.  Insert
-  //     preferenceAPI.createPreference(data)
-  //       .then(preferenceUi.preferenceCreateSuccess)
-  //       .catch(preferenceUi.preferenceFailure)
-  //   }
+  if (store.user.preference) {
+    // Preferences record exists.  Update
+    preferenceAPI.updatePreference(data)
+      .then(preferenceUi.preferenceUpdateSuccess)
+      .catch(preferenceUi.preferenceFailure)
+  } else {
+    // Preferences record exists.  Insert
+    preferenceAPI.createPreference(data)
+      .then(preferenceUi.preferenceCreateSuccess)
+      .catch(preferenceUi.preferenceFailure)
+  }
   event.preventDefault()
 }
 

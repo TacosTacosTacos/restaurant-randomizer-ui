@@ -7,12 +7,9 @@ const navEvents = require('../nav/events.js')
 const signInSuccess = function (data) {
   store.user = data.user
   $('#messageExisting').hide()
-  // Navigate the user to the display section of the application
+  // Navigate the user to the appropriate section of the application
   navUi.navSigningIn()
   navEvents.addAllNavHandlers()
-  // TODO: Show loading animation
-
-  // TODO: Call the retrieve data from fourSquare on sign in function from restraunt-display event
 }
 
 const signInFailure = function (error) {

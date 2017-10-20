@@ -9,7 +9,7 @@ const onSignIn = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
   authApi.signIn(data)
-    .then(authUi.signInSuccess) // User has preferences
+    .then(authUi.signInSuccess)
     .catch(authUi.signInFailure)
 }
 
