@@ -11,6 +11,15 @@ const preferenceCreateSuccess = function (data) {
   navUi.navHome()
 }
 
+const userCategoryGetSuccess = function (data) {
+  console.log('ReturnedDBData', data.user_selected_categories)
+  store.user.user_selected_categories = data.user_selected_categories
+}
+
+const userCategoryInsertSuccess = function (data) {
+  console.log('It Worked', data)
+}
+
 const preferenceUpdateSuccess = function (data) {
   store.user.preference = data.preference
   reuse.updateFieldAddRemoveClassMessage('#messageUpdatePreferences', 'Preferences Updated Successfully', 'alert-success', 'alert-danger')
@@ -26,6 +35,7 @@ const preferenceDeleteSuccess = function (data) {
   reuse.updateFieldAddRemoveClassMessage('#messageUpdatePreferences', 'Preferences Deleted Successfully', 'alert-success', 'alert-danger')
 }
 
+
 const preferenceFailure = function (error) {
   console.error(error)
   reuse.updateFieldAddRemoveClassMessage('#messageUpdatePreferences', 'Unexpected error', 'alert-danger', 'alert-success')
@@ -40,5 +50,7 @@ module.exports = {
   preferenceFailure,
   preferenceDeleteSuccess,
   preferenceDoNotExist,
-  preferenceCreateSuccess
+  preferenceCreateSuccess,
+  userCategoryInsertSuccess,
+  userCategoryGetSuccess
 }

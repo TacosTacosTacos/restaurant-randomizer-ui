@@ -37,6 +37,10 @@ const updateFieldAddRemoveClassMessage = (fieldIDStr, newTextStr, addClassStr, r
   $(fieldIDStr).show()
 }
 
+const arrayComparison = (Array1, Array2) => {
+  return Array1.filter(val => val.indexOf(Array2) < 0)
+}
+
 module.exports = {
   removeDisabledClassesNavArray,
   addDisableClassNavArray,
@@ -45,5 +49,6 @@ module.exports = {
   emptyMultipleTextFields,
   updateFieldAddRemoveClassMessage,
   showMultipleFields,
-  removeValMultipleTextFields
+  removeValMultipleTextFields,
+  arrayComparison
 }

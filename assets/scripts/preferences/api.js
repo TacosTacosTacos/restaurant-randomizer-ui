@@ -22,6 +22,44 @@ const createPreference = (data) => {
   })
 }
 
+const userCategoryGet = () => {
+  return $.ajax({
+    url: config.apiOrigin + '/user_selected_categories',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+const userCategoryInsert = (categoryId) => {
+  const insertData = {
+    'user_selected_category': {
+      'restaurant_category_id': categoryId,
+      'user_id': store.user.id
+    }
+  }
+
+  return $.ajax({
+    url: config.apiOrigin + '/user_selected_categories',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: insertData
+  })
+}
+
+const userCategoryDelete = (id) => {
+  return $.ajax({
+    url: config.apiOrigin + '/user_selected_categories/' + id,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 const updatePreference = (data) => {
   return $.ajax({
     url: config.apiOrigin + '/preferences/' + store.user.preference.id,
@@ -46,5 +84,8 @@ const deletePreference = () => {
 module.exports = {
   updatePreference,
   deletePreference,
-  createPreference
+  createPreference,
+  userCategoryInsert,
+  userCategoryGet,
+  userCategoryDelete
 }
