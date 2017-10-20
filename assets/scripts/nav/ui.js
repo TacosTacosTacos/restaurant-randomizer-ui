@@ -11,7 +11,7 @@ const hideAllNavSections = () => {
 
 const navSigningIn = () => {
   hideAllNavSections()
-  // console.log(store.user.preference.length)
+
   if (store.user.preference) {
     $('#preferenceLocation').val(store.user.preference.location)
     $('#preferenceSearchRadius').val(store.user.preference.search_radius)

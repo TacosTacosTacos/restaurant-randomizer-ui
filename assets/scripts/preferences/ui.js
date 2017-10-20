@@ -12,12 +12,10 @@ const preferenceCreateSuccess = function (data) {
 }
 
 const userCategoryGetSuccess = function (data) {
-  console.log('ReturnedDBData', data.user_selected_categories)
   store.user.user_selected_categories = data.user_selected_categories
 }
 
 const userCategoryInsertSuccess = function (data) {
-  console.log('It Worked', data)
 }
 
 const preferenceUpdateSuccess = function (data) {
@@ -34,7 +32,6 @@ const preferenceDeleteSuccess = function (data) {
 
   reuse.updateFieldAddRemoveClassMessage('#messageUpdatePreferences', 'Preferences Deleted Successfully', 'alert-success', 'alert-danger')
 }
-
 
 const preferenceFailure = function (error) {
   console.error(error)

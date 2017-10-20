@@ -3,7 +3,6 @@ const config = require('../config.js')
 const store = require('../store.js')
 
 const createPreference = (data) => {
-  console.log(store)
   const createRequestData = {
     preference: {
       location: data.preference.location,
