@@ -4,30 +4,36 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 const store = require('../store.js')
 const preferenceAPI = require('./api.js')
 const preferenceUi = require('./ui.js')
+// const reuse = require('../reuse/reuse.js')
 
+// This function is used to detemine if any categories need to be inserted or deleted
 const determineUserCategoryChanges = (insertOrDelete) => {
-  let selectedCategoryIdValues = ($('.categories').val()).map((category) => { return parseInt(category) })
-  selectedCategoryIdValues = selectedCategoryIdValues.map((category) => { return parseInt(category) })
-
+  // Pull back the categories the user selected on the form and convert them to INT
+  const selectedCategoryIdValues = ($('.categories').val()).map((category) => {
+    return parseInt(category)
+  })
+  // Create an array of the Category IDs stored in the database
   const currentlyStoredCategories = store.user.user_selected_categories.map((category) => {
     return category.restaurant_category_id
   })
+  //
   if (insertOrDelete === 'insert') {
+    // Return the Category IDs that should be inserted
     return selectedCategoryIdValues.filter((id) => {
       return currentlyStoredCategories.includes(id) === false
     })
   } else if (insertOrDelete === 'delete') {
+    // determine the category ids
     const deletionIds = currentlyStoredCategories.filter((id) => {
       return selectedCategoryIdValues.includes(id) === false
     })
 
-    store.user.user_selected_categories.map((category) => {
-
-    })
+    // Convert the category ids into user category records for deletion
     const deletionRecords = store.user.user_selected_categories.filter((category) => {
       return deletionIds.includes(category.restaurant_category_id) === true
     })
 
+    // Return the user category records for deletion
     return deletionRecords
   }
 }
@@ -43,45 +49,38 @@ const onUpdatePreferences = function (event) {
   const data = getFormFields(this)
   const categoryIdInserts = determineUserCategoryChanges('insert')
   const categoryRecordDeletes = determineUserCategoryChanges('delete')
+  event.preventDefault()
 
-  if (data.preference.location === store.user.preference.location &&
-    parseInt(data.preference.search_radius) === store.user.preference.search_radius &&
-    categoryIdInserts.length === 0 &&
-    categoryRecordDeletes.length === 0) {
-    console.log('It Worked')
-  } else {
-    if (categoryIdInserts.length !== 0) {
+  if (categoryIdInserts.length !== 0) {
     // Complete needed insert statements
-      categoryIdInserts.forEach((categoryId) => {
-        preferenceAPI.userCategoryInsert(categoryId)
-          .then(updateInMemoryUserCategories)
-          .catch(preferenceUi.preferenceFailure)
-      })
-    }
-
-    if (categoryRecordDeletes.length !== 0) {
-      categoryRecordDeletes.forEach((record) => {
-        preferenceAPI.userCategoryDelete(record.id)
-          .then(updateInMemoryUserCategories)
-          .catch(preferenceUi.preferenceFailure)
-      })
-    }
-    if (store.user.preference) {
-      // Preferences record exists.  Update
-      preferenceAPI.updatePreference(data)
-        .then(preferenceUi.preferenceUpdateSuccess)
+    categoryIdInserts.forEach((categoryId) => {
+      preferenceAPI.userCategoryInsert(categoryId)
+        .then(updateInMemoryUserCategories)
         .catch(preferenceUi.preferenceFailure)
-    } else {
-      // Preferences record exists.  Insert
-      preferenceAPI.createPreference(data)
-        .then(preferenceUi.preferenceCreateSuccess)
-        .catch(preferenceUi.preferenceFailure)
-    }
-    // Generate new data request and navigate user to new screen
-    preferenceUi.preferenceChangeMade()
+    })
   }
 
-  event.preventDefault()
+  if (categoryRecordDeletes.length !== 0) {
+    // Complete needed delete statements
+    categoryRecordDeletes.forEach((record) => {
+      preferenceAPI.userCategoryDelete(record.id)
+        .then(updateInMemoryUserCategories)
+        .catch(preferenceUi.preferenceFailure)
+    })
+  }
+  if (store.user.preference) {
+    // Preferences record exists.  Update
+    preferenceAPI.updatePreference(data)
+      .then(preferenceUi.preferenceUpdateSuccess)
+      .catch(preferenceUi.preferenceFailure)
+  } else {
+    // Preferences record exists.  Insert
+    preferenceAPI.createPreference(data)
+      .then(preferenceUi.preferenceCreateSuccess)
+      .catch(preferenceUi.preferenceFailure)
+  }
+  // Generate new data request and navigate user to new screen
+  preferenceUi.preferenceChangeMade()
 }
 
 const onDeletePreferences = function (event) {

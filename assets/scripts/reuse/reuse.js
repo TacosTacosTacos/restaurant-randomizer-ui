@@ -63,6 +63,9 @@ function shuffle (array) {
   return array
 }
 
+function replaceNullUndefined (key, value) {
+  return (value == null) ? '' : value
+}
 module.exports = {
   removeDisabledClassesNavArray,
   addDisableClassNavArray,
@@ -73,5 +76,6 @@ module.exports = {
   showMultipleFields,
   removeValMultipleTextFields,
   arrayComparison,
-  shuffle
+  shuffle,
+  replaceNullUndefined
 }
