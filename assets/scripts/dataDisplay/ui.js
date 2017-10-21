@@ -6,19 +6,25 @@ const noRestarauntAvailableTemplate = require('../templates/restaurant-notavaila
 
 const fourSquareMockup = require('./fourSquareResponseMockup.js')
 
-const fourSquareCallSuccess = function (data) {
-  store.venues = JSON.parse(JSON.stringify(reuse.shuffle(fourSquareMockup.dataRefresh.venues)))
-
+const updateDisplay = () => {
+  $('.content').hide()
   $('.content').children().remove()
-
   if (store.venues.length > 0) {
     const showRestaurant = restarauntDisplayTemplate({ venue: store.venues[0] })
     $('.content').append(showRestaurant)
     store.venues.shift()
+
+    $('.restaurantReroll').on('click', updateDisplay)
   } else {
     const showRestaurant = noRestarauntAvailableTemplate({ venue: store.venues })
     $('.content').append(showRestaurant)
   }
+  $('.content').show()
+}
+
+const fourSquareCallSuccess = function (data) {
+  store.venues = JSON.parse(JSON.stringify(reuse.shuffle(fourSquareMockup.dataRefresh.venues)))
+  updateDisplay()
 }
 
 // const preferenceFailure = function (error) {
