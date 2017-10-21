@@ -5,6 +5,8 @@ const uiNav = require('./ui.js')
 const uiAuth = require('../auth/ui.js')
 const store = require('../store.js')
 const home = (event) => {
+  // Prevent users from doing navigation when they are not supposed to.
+  // This makes it so that I don't need to remove click events like I did with the last project
   if (store.user.preference) {
     uiNav.navHome()
   }

@@ -2,6 +2,8 @@
 const config = require('../config.js')
 const store = require('../store.js')
 
+// Store for API calls to CRUD on preference and user selected category data
+
 const createPreference = (data) => {
   const createRequestData = {
     preference: {

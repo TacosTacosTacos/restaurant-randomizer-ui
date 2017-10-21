@@ -1,5 +1,5 @@
 'use strict'
-// Generic Functions to be reused as needed
+// Generic Functions to be reused as needed.
 
 const removeDisabledClassesNavArray = (stringArray) => {
   stringArray.forEach((id) => { $(id).removeClass('disabled') })

@@ -4,7 +4,6 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 const store = require('../store.js')
 const preferenceAPI = require('./api.js')
 const preferenceUi = require('./ui.js')
-// const reuse = require('../reuse/reuse.js')
 
 // This function is used to detemine if any categories need to be inserted or deleted
 const determineUserCategoryChanges = (insertOrDelete) => {
@@ -16,19 +15,19 @@ const determineUserCategoryChanges = (insertOrDelete) => {
   const currentlyStoredCategories = store.user.user_selected_categories.map((category) => {
     return category.restaurant_category_id
   })
-  //
+
   if (insertOrDelete === 'insert') {
     // Return the Category IDs that should be inserted
     return selectedCategoryIdValues.filter((id) => {
       return currentlyStoredCategories.includes(id) === false
     })
   } else if (insertOrDelete === 'delete') {
-    // determine the category ids
+    // Determine the category ids for deletion
     const deletionIds = currentlyStoredCategories.filter((id) => {
       return selectedCategoryIdValues.includes(id) === false
     })
 
-    // Convert the category ids into user category records for deletion
+    // Convert the category ids into user selected category records that need to be deleted from the database
     const deletionRecords = store.user.user_selected_categories.filter((category) => {
       return deletionIds.includes(category.restaurant_category_id) === true
     })
@@ -46,7 +45,9 @@ const updateInMemoryUserCategories = () => {
 }
 
 const onUpdatePreferences = function (event) {
+  // Retrieves the form data
   const data = getFormFields(this)
+  // Calls functions for creating arrays of data for insertion/deletion
   const categoryIdInserts = determineUserCategoryChanges('insert')
   const categoryRecordDeletes = determineUserCategoryChanges('delete')
   event.preventDefault()

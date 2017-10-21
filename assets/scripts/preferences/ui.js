@@ -6,16 +6,22 @@ const navEvents = require('../nav/events.js')
 const dataDisplay = require('../dataDisplay/events.js')
 
 const preferenceCreateSuccess = function (data) {
+  // Stores the user preference data and
+  // adds the handlers for being able to navigate to the other sections of the application.
   store.user.preference = data.preference
   reuse.updateFieldAddRemoveClassMessage('#messageUpdatePreferences', 'Preferences Created Successfully', 'alert-success', 'alert-danger')
   navEvents.addHomeHandler()
 }
 
 const userCategoryGetSuccess = function (data) {
+  // Stores the users selected categories
   store.user.user_selected_categories = data.user_selected_categories
 }
 
 const userCategoryInsertSuccess = function (data) {
+  // Created for consistancy.  The application is using a get to store all of the users
+  // category information, and not appending after each api call.  This is done to meet
+  // CRUD project requirements.
 }
 
 const preferenceUpdateSuccess = function (data) {
@@ -24,6 +30,7 @@ const preferenceUpdateSuccess = function (data) {
 }
 
 const preferenceDeleteSuccess = function (data) {
+  // Clears out the form and preference store data.
   store.user.preference = ''
   $('#preferenceLocation').val('')
   $('#preferenceSearchRadius').val('')
@@ -33,6 +40,7 @@ const preferenceDeleteSuccess = function (data) {
 }
 
 const preferenceChangeMade = function () {
+  // Initiates the FourSquare request and does navigation work
   dataDisplay.fourSquareDataRequest()
   navUi.navHome()
 }
