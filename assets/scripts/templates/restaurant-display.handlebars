@@ -1,23 +1,27 @@
-  <section>
-    <h1>{{venue.name}}</h1>
-    <div>
+<section>
+  <h1>{{venue.name}}</h1>
+  <div>
 
-      <h4>Address:</h4>
-        {{#each venue.location.formattedAddress}}
-        <p>{{this}}</p>
-        {{/each}}
+    <h4>Address:</h4>
+    {{#each venue.location.formattedAddress}}
+      <p>{{this}}</p>
+    {{/each}}
+    <br/>
+    {{#if venue.contact.formattedPhone}}
+      <h4>Phone Number:</h4>
+      <p>{{venue.contact.formattedPhone}}</p>
+      <br/>
+    {{/if}}
 
-        {{#if venue.contact.formattedPhone}}
-          <h4>Phone Number:</h4>
-          <p>{{venue.contact.formattedPhone}}</p>
-        {{/if}}
-
-      {{#if venue.menu.mobileUrl}}
-        <p><a href="{{venue.menu.mobileUrl}}" target="_blank">Menu</a></p>
-      {{/if}}
-      {{#unless venue.menu.mobileUrl}}
-        <p>No menu available</p>
-      {{/unless}}
-    </div>
-    <button class="restaurantReroll btn btn-primary">Reroll</button>
-  </section>
+    {{#if venue.menu.mobileUrl}}
+      <h4>Menu:</h4>
+      <p><a href="{{venue.menu.mobileUrl}}" target="_blank">Menu</a></p>
+    {{/if}}
+    {{#unless venue.menu.mobileUrl}}
+      <h4>Menu:</h4>
+      <p>No menu available</p>
+    {{/unless}}
+    <br/>
+  </div>
+  <button class="restaurantReroll btn btn-primary">Reroll</button>
+</section>

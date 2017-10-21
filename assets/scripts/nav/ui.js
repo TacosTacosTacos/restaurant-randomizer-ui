@@ -27,6 +27,7 @@ const navSigningIn = () => {
     })
 
     $('#secRestaurantDisplay').show()
+    dataDisplay.fourSquareDataRequest()
     reuse.removeDisabledClassesNavArray(['.home', '.preferences', '.signout'])
     reuse.removeActiveClassesNavArray(['.home', '.preferences', '.signout'])
     $('.home').addClass('active')
@@ -52,8 +53,6 @@ const navHome = () => {
   reuse.removeDisabledClassesNavArray(['.home'])
   reuse.removeActiveClassesNavArray(['.home', '.preferences', '.signout'])
   $('.home').addClass('active')
-
-  dataDisplay.fourSquareDataRequest()
 }
 
 const navDisableHome = () => {
