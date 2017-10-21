@@ -19,7 +19,8 @@ const updateDisplay = () => {
     const showRestaurant = noRestarauntAvailableTemplate({ venue: store.venues })
     $('.content').append(showRestaurant)
   }
-  $('.content').show()
+  // $('.content').show()
+  $('.content').fadeIn('slow')
 }
 
 const fourSquareCallSuccess = function (data) {

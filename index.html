@@ -63,21 +63,21 @@ It is used for login and signup -->
       </fieldset>
     </form>
 
-    <form id="sign-up" class="col-xs-12" autocomplete="off">
+    <form id="sign-up" class="col-xs-12" autocomplete="new-password">
       <fieldset>
         <legend>New User</legend>
         <div id="messageNew" class="form-group"></div>
         <div class="form-group">
           <label for="">Email: </label>
-          <input type="email" name="credentials[email]" autocomplete="off" placeholder="Email" required>
+          <input type="email" name="credentials[email]" placeholder="Email" required>
         </div>
         <div class="form-group">
           <label for="">Password: </label>
-          <input type="password" name="credentials[password]" autocomplete="off" placeholder="Password" required>
+          <input type="password" autocomplete="new-password" name="credentials[password]" placeholder="Password" required>
         </div>
         <div class="form-group">
           <label for="">Confirm Password: </label>
-          <input type="password" name="credentials[password_confirmation]" autocomplete="off" placeholder="Password" required>
+          <input type="password" name="credentials[password_confirmation]" placeholder="Password" required>
         </div>
         <div class="form-group">
           <input type="submit" name="submit" class="btn btn-primary" value="Sign up!">
@@ -89,7 +89,7 @@ It is used for login and signup -->
   <!-- This page is mainly used for changing passwords. -->
   <section id="secUserPreferences" class="hide-section">
 
-    <form id="changeRestaurantPreferences" class="col-xs-12 form-btm-pdng">
+    <form id="changeRestaurantPreferences" class="col-xs-12 form-btm-pdng container">
       <fieldset>
         <legend>Update Restaurant Preferences</legend>
         <div id="messageUpdatePreferences" class="form-group" style="display:none"></div>
@@ -129,7 +129,7 @@ It is used for login and signup -->
       <button value="Delete Existing Preferences" id="stupidDeletionButton" class="btn btn-primary">Delete Preferences</button>
     </div>
     <!-- Change Password -->
-    <form id="change-password" class="col-xs-12">
+    <form id="change-password" class="col-xs-12 container form-top-pdng">
       <fieldset>
         <legend>Change Your Password</legend>
         <div id="messageChangePassword" class="form-group" style="display:none"></div>

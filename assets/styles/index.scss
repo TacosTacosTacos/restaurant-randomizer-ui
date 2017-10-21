@@ -5,6 +5,10 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
   padding-bottom: 1em;
 }
 
+.form-top-pdng {
+  padding-top: 1em;
+}
+
 .hide-section {
   display: none;
 }
@@ -16,4 +20,9 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 .content {
   margin: 0 auto;
   text-align: center;
+}
+
+.google-map {
+  margin: 0 auto;
+  width: 100%;
 }

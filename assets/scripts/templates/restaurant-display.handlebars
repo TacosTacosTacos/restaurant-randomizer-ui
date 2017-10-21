@@ -5,6 +5,18 @@
       <p>{{this}}</p>
     {{/each}}
     <br/>
+<div class="container">
+  <iframe class=".google-map"
+    width="50%"
+    height="450"
+    frameborder="0"
+    src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDesrBtbwRExdzQejyBJaHPkmeaHLQViSM&center={{venue.location.lat}},{{venue.location.lng}}&zoom=15&maptype=satellite" allowfullscreen>
+  </iframe>
+</div>
+
+
+    <br>
+
     {{#if venue.contact.formattedPhone}}
       <h4>Phone Number</h4>
       <p>{{venue.contact.formattedPhone}}</p>
