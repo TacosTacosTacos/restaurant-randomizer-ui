@@ -9,8 +9,6 @@ const preferenceCreateSuccess = function (data) {
   store.user.preference = data.preference
   reuse.updateFieldAddRemoveClassMessage('#messageUpdatePreferences', 'Preferences Created Successfully', 'alert-success', 'alert-danger')
   navEvents.addHomeHandler()
-  dataDisplay.fourSquareDataRequest()
-  navUi.navHome()
 }
 
 const userCategoryGetSuccess = function (data) {
@@ -23,7 +21,6 @@ const userCategoryInsertSuccess = function (data) {
 const preferenceUpdateSuccess = function (data) {
   store.user.preference = data.preference
   reuse.updateFieldAddRemoveClassMessage('#messageUpdatePreferences', 'Preferences Updated Successfully', 'alert-success', 'alert-danger')
-  navUi.navHome()
 }
 
 const preferenceDeleteSuccess = function (data) {
@@ -33,6 +30,11 @@ const preferenceDeleteSuccess = function (data) {
   navUi.navDisableHome()
 
   reuse.updateFieldAddRemoveClassMessage('#messageUpdatePreferences', 'Preferences Deleted Successfully', 'alert-success', 'alert-danger')
+}
+
+const preferenceChangeMade = function () {
+  dataDisplay.fourSquareDataRequest()
+  navUi.navHome()
 }
 
 const preferenceFailure = function (error) {
@@ -51,5 +53,6 @@ module.exports = {
   preferenceDoNotExist,
   preferenceCreateSuccess,
   userCategoryInsertSuccess,
-  userCategoryGetSuccess
+  userCategoryGetSuccess,
+  preferenceChangeMade
 }

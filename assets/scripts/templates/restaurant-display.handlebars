@@ -1,24 +1,21 @@
 <section>
   <h1>{{venue.name}}</h1>
   <div>
-
-    <h4>Address:</h4>
     {{#each venue.location.formattedAddress}}
       <p>{{this}}</p>
     {{/each}}
     <br/>
     {{#if venue.contact.formattedPhone}}
-      <h4>Phone Number:</h4>
+      <h4>Phone Number</h4>
       <p>{{venue.contact.formattedPhone}}</p>
       <br/>
     {{/if}}
 
     {{#if venue.menu.mobileUrl}}
-      <h4>Menu:</h4>
-      <p><a href="{{venue.menu.mobileUrl}}" target="_blank">Menu</a></p>
+      <h4><a href="{{venue.menu.mobileUrl}}" target="_blank">Menu</a></h4>
     {{/if}}
     {{#unless venue.menu.mobileUrl}}
-      <h4>Menu:</h4>
+      <h4>Menu</h4>
       <p>No menu available</p>
     {{/unless}}
     <br/>

@@ -44,34 +44,43 @@ const onUpdatePreferences = function (event) {
   const categoryIdInserts = determineUserCategoryChanges('insert')
   const categoryRecordDeletes = determineUserCategoryChanges('delete')
 
-  if (categoryIdInserts.length !== 0) {
-  // Complete needed insert statements
-    categoryIdInserts.forEach((categoryId) => {
-      preferenceAPI.userCategoryInsert(categoryId)
-        .then(updateInMemoryUserCategories)
-        .catch(preferenceUi.preferenceFailure)
-    })
-  }
-
-  if (categoryRecordDeletes.length !== 0) {
-    categoryRecordDeletes.forEach((record) => {
-      preferenceAPI.userCategoryDelete(record.id)
-        .then(updateInMemoryUserCategories)
-        .catch(preferenceUi.preferenceFailure)
-    })
-  }
-
-  if (store.user.preference) {
-    // Preferences record exists.  Update
-    preferenceAPI.updatePreference(data)
-      .then(preferenceUi.preferenceUpdateSuccess)
-      .catch(preferenceUi.preferenceFailure)
+  if (data.preference.location === store.user.preference.location &&
+    parseInt(data.preference.search_radius) === store.user.preference.search_radius &&
+    categoryIdInserts.length === 0 &&
+    categoryRecordDeletes.length === 0) {
+    console.log('It Worked')
   } else {
-    // Preferences record exists.  Insert
-    preferenceAPI.createPreference(data)
-      .then(preferenceUi.preferenceCreateSuccess)
-      .catch(preferenceUi.preferenceFailure)
+    if (categoryIdInserts.length !== 0) {
+    // Complete needed insert statements
+      categoryIdInserts.forEach((categoryId) => {
+        preferenceAPI.userCategoryInsert(categoryId)
+          .then(updateInMemoryUserCategories)
+          .catch(preferenceUi.preferenceFailure)
+      })
+    }
+
+    if (categoryRecordDeletes.length !== 0) {
+      categoryRecordDeletes.forEach((record) => {
+        preferenceAPI.userCategoryDelete(record.id)
+          .then(updateInMemoryUserCategories)
+          .catch(preferenceUi.preferenceFailure)
+      })
+    }
+    if (store.user.preference) {
+      // Preferences record exists.  Update
+      preferenceAPI.updatePreference(data)
+        .then(preferenceUi.preferenceUpdateSuccess)
+        .catch(preferenceUi.preferenceFailure)
+    } else {
+      // Preferences record exists.  Insert
+      preferenceAPI.createPreference(data)
+        .then(preferenceUi.preferenceCreateSuccess)
+        .catch(preferenceUi.preferenceFailure)
+    }
+    // Generate new data request and navigate user to new screen
+    preferenceUi.preferenceChangeMade()
   }
+
   event.preventDefault()
 }
 

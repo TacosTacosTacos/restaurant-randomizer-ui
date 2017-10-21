@@ -7,10 +7,10 @@ const noRestarauntAvailableTemplate = require('../templates/restaurant-notavaila
 const fourSquareMockup = require('./fourSquareResponseMockup.js')
 
 const fourSquareCallSuccess = function (data) {
-  store.venues = reuse.shuffle(fourSquareMockup.dataRefresh.venues)
+  store.venues = JSON.parse(JSON.stringify(reuse.shuffle(fourSquareMockup.dataRefresh.venues)))
+
   $('.content').children().remove()
-  // TODO: figure out how to make it so that you can display just one item
-  console.log(store.venues)
+
   if (store.venues.length > 0) {
     const showRestaurant = restarauntDisplayTemplate({ venue: store.venues[0] })
     $('.content').append(showRestaurant)
