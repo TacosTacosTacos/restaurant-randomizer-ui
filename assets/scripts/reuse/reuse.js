@@ -41,6 +41,28 @@ const arrayComparison = (Array1, Array2) => {
   return Array1.filter(val => val.indexOf(Array2) < 0)
 }
 
+// Fisher-Yates (aka Knuth) Shuffle
+// http://sedition.com/perl/javascript-fy.html
+function shuffle (array) {
+  let currentIndex = array.length
+  let temporaryValue
+  let randomIndex
+
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex -= 1
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex]
+    array[currentIndex] = array[randomIndex]
+    array[randomIndex] = temporaryValue
+  }
+
+  return array
+}
+
 module.exports = {
   removeDisabledClassesNavArray,
   addDisableClassNavArray,
@@ -50,5 +72,6 @@ module.exports = {
   updateFieldAddRemoveClassMessage,
   showMultipleFields,
   removeValMultipleTextFields,
-  arrayComparison
+  arrayComparison,
+  shuffle
 }

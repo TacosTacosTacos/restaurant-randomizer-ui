@@ -27,7 +27,6 @@ const signOut = (event) => {
   if (store.user) {
     onSignOut(event)
     uiNav.navSignOut()
-    // removeAllNavHandlers()
   }
 }
 
@@ -40,11 +39,6 @@ const addAllNavHandlers = function () {
   $('#navSignOut').on('click', signOut)
 }
 
-// const removeAllNavHandlers = function () {
-//   $('#navHome').off('click', home)
-//   $('#navPreferences').off('click', preferences)
-//   $('#navSignOut').off('click', signOut)
-// }
 module.exports = {
   addAllNavHandlers,
   addHomeHandler

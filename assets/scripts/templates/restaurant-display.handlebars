@@ -1,0 +1,23 @@
+  <section>
+    <h1>{{venue.name}}</h1>
+    <div>
+
+      <h4>Address:</h4>
+        {{#each venue.location.formattedAddress}}
+        <p>{{this}}</p>
+        {{/each}}
+
+        {{#if venue.contact.formattedPhone}}
+          <h4>Phone Number:</h4>
+          <p>{{venue.contact.formattedPhone}}</p>
+        {{/if}}
+
+      {{#if venue.menu.mobileUrl}}
+        <p><a href="{{venue.menu.mobileUrl}}" target="_blank">Menu</a></p>
+      {{/if}}
+      {{#unless venue.menu.mobileUrl}}
+        <p>No menu available</p>
+      {{/unless}}
+    </div>
+    <button class="restaurantReroll btn btn-primary">Reroll</button>
+  </section>

@@ -2,6 +2,7 @@
 
 const store = require('../store.js')
 const reuse = require('../reuse/reuse.js')
+const dataDisplay = require('../dataDisplay/events.js')
 
 const hideAllNavSections = () => {
   $('#secHomeLoggedOut').hide()
@@ -17,7 +18,12 @@ const navSigningIn = () => {
     $('#preferenceSearchRadius').val(store.user.preference.search_radius)
 
     store.user.user_selected_categories.map((category) => {
-      $('#categoryId' + category.id).attr('selected', 'selected')
+      console.log(category)
+      console.log('#categoryId' + category.restaurant_category_id)
+      console.log('val', $('#categoryId' + category.restaurant_category_id).val())
+      $('#categoryId' + category.restaurant_category_id).attr('selected', true)
+
+      console.log($('#categoryId' + category.restaurant_category_id).attr('selected'))
     })
 
     $('#secRestaurantDisplay').show()
@@ -46,6 +52,8 @@ const navHome = () => {
   reuse.removeDisabledClassesNavArray(['.home'])
   reuse.removeActiveClassesNavArray(['.home', '.preferences', '.signout'])
   $('.home').addClass('active')
+
+  dataDisplay.fourSquareDataRequest()
 }
 
 const navDisableHome = () => {
@@ -58,7 +66,6 @@ const navEnableHome = () => {
 }
 
 const navSignOut = () => {
-  // TODO: Clear out all of the text fields
   reuse.emptyMultipleTextFields(['#messageNew', '#messageExisting', '#messageChangePassword', '#messageUpdatePreferences'])
 
   reuse.removeValMultipleTextFields(['#preferenceSearchRadius', '#preferenceLocation', '.chgpass'])
@@ -66,9 +73,9 @@ const navSignOut = () => {
   hideAllNavSections()
   $('#secHomeLoggedOut').show()
 
-  // TODO: Hide other error sub-sections and fields to give the next user a fresh start
-  // reuse.hideMultipleFields([])
-  $('option').removeAttr('selected')
+  console.log($('.categoryOption'))
+  $('.categoryOption').removeAttr('selected')
+  console.log($('.categoryOption').attr('selected'))
 
   reuse.addDisableClassNavArray(['.home', '.preferences', '.signout'])
 
