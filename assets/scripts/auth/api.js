@@ -2,6 +2,7 @@
 const config = require('../config.js')
 const store = require('../store.js')
 
+// Calls SignIn User Event API
 const signIn = (data) => {
   return $.ajax({
     url: config.apiOrigin + '/sign-in',
@@ -10,6 +11,7 @@ const signIn = (data) => {
   })
 }
 
+// Calls Signup User Event API
 const signUp = (data) => {
   return $.ajax({
     url: config.apiOrigin + '/sign-up',
@@ -18,6 +20,7 @@ const signUp = (data) => {
   })
 }
 
+// Calls Change Password User Event API
 const changePassword = (data) => {
   return $.ajax({
     url: config.apiOrigin + '/change-password/' + store.user.id,
@@ -29,6 +32,7 @@ const changePassword = (data) => {
   })
 }
 
+// Calls Signout User Event API
 const signOut = () => {
   return $.ajax({
     url: config.apiOrigin + '/sign-out/' + store.user.id,

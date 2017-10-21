@@ -21,6 +21,7 @@ const onSignUp = function (event) {
       .then(authUi.signUpSuccess)
       .catch(authUi.signUpFailure)
   } else {
+    // Display an error when the user doesn't use matching passwords
     authUi.signUpPasswordFailure()
   }
 }
