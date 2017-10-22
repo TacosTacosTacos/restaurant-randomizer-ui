@@ -25,6 +25,7 @@ const signInFailure = function (error) {
 
 const signUpSuccess = function (data) {
   reuse.updateFieldAddRemoveClassMessage('#messageNew', 'Signed up successfully', 'alert-success', 'alert-danger')
+  $('.usersignup').val('')
   $('#messageNew').show()
 }
 const signUpFailure = function (error) {
