@@ -58,7 +58,6 @@ const onUpdatePreferences = function (event) {
         // Complete needed insert statements
         categoryIdInserts.forEach((categoryId) => {
           preferenceAPI.userCategoryInsert(categoryId)
-            .then(updateInMemoryUserCategories)
             .catch(preferenceUi.preferenceFailure)
         })
       }
@@ -67,10 +66,15 @@ const onUpdatePreferences = function (event) {
         // Complete needed delete statements
         categoryRecordDeletes.forEach((record) => {
           preferenceAPI.userCategoryDelete(record.id)
-            .then(updateInMemoryUserCategories)
             .catch(preferenceUi.preferenceFailure)
         })
       }
+      if (categoryRecordDeletes.length !== 0 || categoryIdInserts.length !== 0) {
+        setTimeout(() => {
+          updateInMemoryUserCategories()
+        }, 200)
+      }
+
       if (store.user.preference) {
         // Preferences record exists.  Update
         preferenceAPI.updatePreference(data)
