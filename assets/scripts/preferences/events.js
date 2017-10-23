@@ -51,7 +51,7 @@ const onUpdatePreferences = function (event) {
   const categoryIdInserts = determineUserCategoryChanges('insert')
   const categoryRecordDeletes = determineUserCategoryChanges('delete')
   event.preventDefault()
-
+  // Fix Promise Bug
   if (categoryIdInserts.length !== 0) {
     // Complete needed insert statements
     categoryIdInserts.forEach((categoryId) => {

@@ -8,6 +8,7 @@ const updateDisplay = () => {
   // Hides the existing content on the data display / home page
   // Removes all of the previously appended content within it
   $('.content').hide()
+  $('.sk-cube-grid').show()
   $('.content').children().remove()
 
   if (store.venues.length > 0) {
@@ -24,6 +25,7 @@ const updateDisplay = () => {
     $('.content').append(showRestaurant)
   }
   // Shows newly defined content using an animation
+  $('.sk-cube-grid').hide()
   $('.content').fadeIn('slow')
 }
 
@@ -33,7 +35,6 @@ const fourSquareCallSuccess = function (data) {
   // Technically my reshuffle button isn't shuffling, but the user won't know, and it is more efficient
   // to do things this way.  After the data is stored, it is displayed
   store.venues = reuse.shuffle(data.venues)
-  console.log(store.venues)
   updateDisplay()
 }
 

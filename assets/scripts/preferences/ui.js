@@ -42,6 +42,7 @@ const preferenceDeleteSuccess = function (data) {
 const preferenceChangeMade = function () {
   // Initiates the FourSquare request and does navigation work
   dataDisplay.fourSquareDataRequest()
+  $('.sk-cube-grid').show()
   navUi.navHome()
 }
 
