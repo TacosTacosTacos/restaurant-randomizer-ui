@@ -86,6 +86,8 @@ const navSignOut = () => {
 
   // Bring the user to the logged out page
   hideAllNavSections()
+  $('.content').hide()
+  $('.sk-cube-grid').show()
   $('#secHomeLoggedOut').show()
 
   // Reset the nav bar
