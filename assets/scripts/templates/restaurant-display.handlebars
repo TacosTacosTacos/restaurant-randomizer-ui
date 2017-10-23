@@ -5,17 +5,6 @@
       <p>{{this}}</p>
     {{/each}}
     <br/>
-<div class="container">
-  <iframe class=".google-map"
-    width="50%"
-    height="450"
-    frameborder="0"
-    src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDesrBtbwRExdzQejyBJaHPkmeaHLQViSM&center={{venue.location.lat}},{{venue.location.lng}}&zoom=15&maptype=satellite" allowfullscreen>
-  </iframe>
-</div>
-
-
-    <br>
 
     {{#if venue.contact.formattedPhone}}
       <h4>Phone Number</h4>
@@ -31,6 +20,19 @@
       <p>No menu available</p>
     {{/unless}}
     <br/>
+    <div class="container">
+      <iframe class=".google-map" width="50%" height="450" frameborder="0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDesrBtbwRExdzQejyBJaHPkmeaHLQViSM&center={{venue.location.lat}},{{venue.location.lng}}&zoom=15&maptype=satellite" allowfullscreen>
+      </iframe>
+    </div>
+    <br>
+    {{#if venue.contact.twitter}}
+      <div class="twitter-timeline container">
+        <a class="twitter-timeline" data-theme="dark" href="https://twitter.com/{{venue.contact.twitter}}?ref_src=twsrc%5Etfw" data-width="300" data-height="300"></a>
+        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+      <br/>
+    {{/if}}
+
   </div>
   <button class="restaurantReroll btn btn-primary">Reroll</button>
 </section>
