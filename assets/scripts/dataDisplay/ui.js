@@ -3,7 +3,7 @@ const store = require('../store.js')
 const reuse = require('../reuse/reuse.js')
 const restarauntDisplayTemplate = require('../templates/restaurant-display.handlebars')
 const noRestarauntAvailableTemplate = require('../templates/restaurant-notavailable.handlebars')
-
+const restarauntFailureTemplate = require('../templates/restaurant-failure.handlebars')
 const updateDisplay = () => {
   // Hides the existing content on the data display / home page
   // Removes all of the previously appended content within it
@@ -38,11 +38,22 @@ const fourSquareCallSuccess = function (data) {
   updateDisplay()
 }
 
-// const preferenceFailure = function (error) {
-//   console.error(error)
-//   reuse.updateFieldAddRemoveClassMessage('#messageUpdatePreferences', 'Unexpected error', 'alert-danger', 'alert-success')
-// }
+const fourSquareCallFailure = function (data) {
+  // Hides the existing content on the data display / home page
+  // Removes all of the previously appended content within it
+  $('.content').hide()
+  $('.sk-cube-grid').hide()
+  $('.content').children().remove()
+
+  const showFailure = restarauntFailureTemplate({ venue: store.venues })
+  console.log('getting here')
+  $('.content').append(showFailure)
+
+  // Shows newly defined content using an animation
+  $('.content').fadeIn('slow')
+}
 
 module.exports = {
-  fourSquareCallSuccess
+  fourSquareCallSuccess,
+  fourSquareCallFailure
 }

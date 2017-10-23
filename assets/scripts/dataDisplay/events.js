@@ -4,6 +4,7 @@ const uiDataDisplay = require('./ui.js')
 const fourSquareDataRequest = function () {
   apiDataDisplay.fourSquareCall()
     .then(uiDataDisplay.fourSquareCallSuccess)
+    .catch(uiDataDisplay.fourSquareCallFailure)
 }
 
 module.exports = {
