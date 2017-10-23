@@ -4,8 +4,6 @@ const reuse = require('../reuse/reuse.js')
 const restarauntDisplayTemplate = require('../templates/restaurant-display.handlebars')
 const noRestarauntAvailableTemplate = require('../templates/restaurant-notavailable.handlebars')
 
-const fourSquareMockup = require('./fourSquareResponseMockup.js')
-
 const updateDisplay = () => {
   // Hides the existing content on the data display / home page
   // Removes all of the previously appended content within it
@@ -30,13 +28,12 @@ const updateDisplay = () => {
 }
 
 const fourSquareCallSuccess = function (data) {
-  // Stores the simulated data.  Treats it as if it was JSON.
-  // Technically this conversion isn't needed since the data is a JS object, but
-  // it gets me around the object reference problem easily.
+  // FourSquare Call
   // I am also calling the shuffle function from the reuse library to randomly sort the returned data.
   // Technically my reshuffle button isn't shuffling, but the user won't know, and it is more efficient
   // to do things this way.  After the data is stored, it is displayed
-  store.venues = JSON.parse(JSON.stringify(reuse.shuffle(fourSquareMockup.dataRefresh.venues)))
+  store.venues = reuse.shuffle(data.venues)
+  console.log(store.venues)
   updateDisplay()
 }
 
