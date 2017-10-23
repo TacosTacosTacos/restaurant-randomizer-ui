@@ -51,7 +51,6 @@ const onUpdatePreferences = function (event) {
   const categoryIdInserts = determineUserCategoryChanges('insert')
   const categoryRecordDeletes = determineUserCategoryChanges('delete')
   event.preventDefault()
-  // TODO:Fix Promise Bug
 
   const categoryAndPreferencePromise = new Promise(
     function (resolve, reject) {
@@ -86,6 +85,7 @@ const onUpdatePreferences = function (event) {
       resolve() // fulfilled
     }
   )
+  // All other requests have been completed.  Make 4S request
   categoryAndPreferencePromise.then(preferenceUi.preferenceChangeMade)
 }
 
