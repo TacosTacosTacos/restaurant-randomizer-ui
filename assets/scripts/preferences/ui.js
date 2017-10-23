@@ -3,7 +3,7 @@ const store = require('../store.js')
 const reuse = require('../reuse/reuse.js')
 const navUi = require('../nav/ui.js')
 const navEvents = require('../nav/events.js')
-const dataDisplay = require('../dataDisplay/events.js')
+const dataDisplayEvents = require('../dataDisplay/events.js')
 
 const preferenceCreateSuccess = function (data) {
   // Stores the user preference data and
@@ -41,8 +41,12 @@ const preferenceDeleteSuccess = function (data) {
 
 const preferenceChangeMade = function () {
   // Initiates the FourSquare request and does navigation work
-  dataDisplay.fourSquareDataRequest()
+  $('.content').hide()
   $('.sk-cube-grid').show()
+  setTimeout(() => {
+    dataDisplayEvents.fourSquareDataRequest()
+  }, 200)
+
   navUi.navHome()
 }
 

@@ -38,15 +38,15 @@ const fourSquareCallSuccess = function (data) {
   updateDisplay()
 }
 
-const fourSquareCallFailure = function (data) {
+const fourSquareCallFailure = function (error) {
   // Hides the existing content on the data display / home page
   // Removes all of the previously appended content within it
+  console.error(error)
   $('.content').hide()
   $('.sk-cube-grid').hide()
   $('.content').children().remove()
 
   const showFailure = restarauntFailureTemplate({ venue: store.venues })
-  console.log('getting here')
   $('.content').append(showFailure)
 
   // Shows newly defined content using an animation

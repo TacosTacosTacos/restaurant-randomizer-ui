@@ -51,37 +51,42 @@ const onUpdatePreferences = function (event) {
   const categoryIdInserts = determineUserCategoryChanges('insert')
   const categoryRecordDeletes = determineUserCategoryChanges('delete')
   event.preventDefault()
-  // Fix Promise Bug
-  if (categoryIdInserts.length !== 0) {
-    // Complete needed insert statements
-    categoryIdInserts.forEach((categoryId) => {
-      preferenceAPI.userCategoryInsert(categoryId)
-        .then(updateInMemoryUserCategories)
-        .catch(preferenceUi.preferenceFailure)
-    })
-  }
+  // TODO:Fix Promise Bug
 
-  if (categoryRecordDeletes.length !== 0) {
-    // Complete needed delete statements
-    categoryRecordDeletes.forEach((record) => {
-      preferenceAPI.userCategoryDelete(record.id)
-        .then(updateInMemoryUserCategories)
-        .catch(preferenceUi.preferenceFailure)
-    })
-  }
-  if (store.user.preference) {
-    // Preferences record exists.  Update
-    preferenceAPI.updatePreference(data)
-      .then(preferenceUi.preferenceUpdateSuccess)
-      .catch(preferenceUi.preferenceFailure)
-  } else {
-    // Preferences record exists.  Insert
-    preferenceAPI.createPreference(data)
-      .then(preferenceUi.preferenceCreateSuccess)
-      .catch(preferenceUi.preferenceFailure)
-  }
-  // Generate new data request and navigate user to new screen
-  preferenceUi.preferenceChangeMade()
+  const categoryAndPreferencePromise = new Promise(
+    function (resolve, reject) {
+      if (categoryIdInserts.length !== 0) {
+        // Complete needed insert statements
+        categoryIdInserts.forEach((categoryId) => {
+          preferenceAPI.userCategoryInsert(categoryId)
+            .then(updateInMemoryUserCategories)
+            .catch(preferenceUi.preferenceFailure)
+        })
+      }
+
+      if (categoryRecordDeletes.length !== 0) {
+        // Complete needed delete statements
+        categoryRecordDeletes.forEach((record) => {
+          preferenceAPI.userCategoryDelete(record.id)
+            .then(updateInMemoryUserCategories)
+            .catch(preferenceUi.preferenceFailure)
+        })
+      }
+      if (store.user.preference) {
+        // Preferences record exists.  Update
+        preferenceAPI.updatePreference(data)
+          .then(preferenceUi.preferenceUpdateSuccess)
+          .catch(preferenceUi.preferenceFailure)
+      } else {
+        // Preferences record exists.  Insert
+        preferenceAPI.createPreference(data)
+          .then(preferenceUi.preferenceCreateSuccess)
+          .catch(preferenceUi.preferenceFailure)
+      }
+      resolve() // fulfilled
+    }
+  )
+  categoryAndPreferencePromise.then(preferenceUi.preferenceChangeMade)
 }
 
 const onDeletePreferences = function (event) {
