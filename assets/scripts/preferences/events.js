@@ -106,9 +106,28 @@ const onDeletePreferences = function (event) {
   event.preventDefault()
 }
 
+const onGetAddress = function (event) {
+  if (navigator.geolocation) {
+    $('#getAddress').prop('disabled', true)
+    console.log(navigator.geolocation.getCurrentPosition(locationRetrievedSuccessfully, preferenceUi.googleRetrievalFailure))
+  } else {
+    // What to do if not supported at all
+    preferenceUi.googleRetrievalFailure()
+  }
+  event.preventDefault()
+}
+
+function locationRetrievedSuccessfully (pos) {
+  const crd = pos.coords
+  preferenceAPI.retrieveAddressFromGoogle(crd)
+    .then(preferenceUi.googleRetrievalSuccess)
+    .catch(preferenceUi.googleRetrievalFailure)
+}
+
 const addHandlers = function () {
   $('#changeRestaurantPreferences').on('submit', onUpdatePreferences)
   $('#stupidDeletionButton').on('click', onDeletePreferences)
+  $('#getAddress').on('click', onGetAddress)
 }
 
 module.exports = {

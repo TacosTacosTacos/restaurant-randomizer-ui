@@ -12,8 +12,9 @@ https://github.com/TacosTacosTacos/restaurant-randomizer-api
 
 ## Technologies Used
 HTML 5; CSS3; Bootstap 3; SASS; Handlebars;
-Google Maps Embed;
-Twitter Embed;
+Google Maps Geocoding API;
+Google Maps Embed API
+Twitter Timelines Embed;
 
 ## Uses code from:
   Spinkit - http://tobiasahlin.com/spinkit/

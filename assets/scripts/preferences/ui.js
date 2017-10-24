@@ -59,6 +59,16 @@ const preferenceDoNotExist = function () {
   reuse.updateFieldAddRemoveClassMessage('#messageUpdatePreferences', 'Preferences Record does not exist', 'alert-danger', 'alert-success')
 }
 
+const googleRetrievalSuccess = function (data) {
+  $('#preferenceLocation').val(data.results[0].formatted_address)
+  $('#getAddress').prop('disabled', false)
+}
+
+const googleRetrievalFailure = function () {
+  reuse.updateFieldAddRemoveClassMessage('#messageUpdatePreferences', 'Unexpected error', 'alert-danger', 'alert-success')
+  $('#getAddress').prop('disabled', false)
+}
+
 module.exports = {
   preferenceUpdateSuccess,
   preferenceFailure,
@@ -67,5 +77,7 @@ module.exports = {
   preferenceCreateSuccess,
   userCategoryInsertSuccess,
   userCategoryGetSuccess,
-  preferenceChangeMade
+  preferenceChangeMade,
+  googleRetrievalSuccess,
+  googleRetrievalFailure
 }

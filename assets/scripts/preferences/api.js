@@ -82,11 +82,20 @@ const deletePreference = () => {
   })
 }
 
+const retrieveAddressFromGoogle = (crd) => {
+  const url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + crd.latitude + ',' + crd.longitude + '&key=AIzaSyCwxJaqlOMDni69JHseSy-PHw6MVWHCPFs'
+  return $.ajax({
+    url: url,
+    method: 'GET'
+  })
+}
+
 module.exports = {
   updatePreference,
   deletePreference,
   createPreference,
   userCategoryInsert,
   userCategoryGet,
-  userCategoryDelete
+  userCategoryDelete,
+  retrieveAddressFromGoogle
 }
