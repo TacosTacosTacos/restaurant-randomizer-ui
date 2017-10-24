@@ -4,14 +4,10 @@
     {{#each venue.location.formattedAddress}}
       <p>{{this}}</p>
     {{/each}}
-    <br/>
-
     {{#if venue.contact.formattedPhone}}
-      <h4>Phone Number</h4>
       <p>{{venue.contact.formattedPhone}}</p>
-      <br/>
     {{/if}}
-
+    <br/>
     {{#if venue.menu.mobileUrl}}
       <h4><a href="{{venue.menu.mobileUrl}}" target="_blank">Menu</a></h4>
     {{/if}}
@@ -20,11 +16,19 @@
       <p>No menu available</p>
     {{/unless}}
     <br/>
-    <div class="container">
-      <iframe class=".google-map" width="50%" height="450" frameborder="0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDesrBtbwRExdzQejyBJaHPkmeaHLQViSM&center={{venue.location.lat}},{{venue.location.lng}}&zoom=15&maptype=satellite" allowfullscreen>
+
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col-xl-4"></div>
+      <div class="col-md-4 col-lg-4 col-xl-4">
+        <div class="embed-responsive embed-responsive-4by3">
+          <iframe class=".google-map" width="500em" height="450em" frameborder="0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDesrBtbwRExdzQejyBJaHPkmeaHLQViSM&center={{venue.location.lat}},{{venue.location.lng}}&zoom=19&maptype=satellite" allowfullscreen>
       </iframe>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-4 col-xl-4"></div>
     </div>
     <br>
+
     {{#if venue.contact.twitter}}
       <div class="twitter-timeline container">
         <a class="twitter-timeline" data-theme="dark" href="https://twitter.com/{{venue.contact.twitter}}?ref_src=twsrc%5Etfw" data-width="300" data-height="300"></a>
@@ -32,7 +36,6 @@
       </div>
       <br/>
     {{/if}}
-
   </div>
   <button class="restaurantReroll btn btn-primary">Reroll</button>
 </section>
