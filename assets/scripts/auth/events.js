@@ -18,7 +18,14 @@ const onSignUp = function (event) {
   event.preventDefault()
   if (data.credentials.password === data.credentials.password_confirmation) {
     authApi.signUp(data)
-      .then(authUi.signUpSuccess)
+      // .then(authUi.signUpSuccess)
+      .then(() => {
+        setTimeout(() => {
+          authApi.signIn(data)
+            .then(authUi.signInSuccess)
+            .catch(authUi.signUpFailure)
+        }, 200)
+      })
       .catch(authUi.signUpFailure)
   } else {
     // Display an error when the user doesn't use matching passwords

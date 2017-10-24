@@ -8,9 +8,14 @@
       <p>{{venue.contact.formattedPhone}}</p>
     {{/if}}
     <br/>
+    {{#if venue.url}}
+      <h4><a href="{{venue.url}}" target="_blank">Website</a></h4>
+      <br/>
+    {{/if}}
     {{#if venue.menu.mobileUrl}}
       <h4><a href="{{venue.menu.mobileUrl}}" target="_blank">Menu</a></h4>
     {{/if}}
+
     {{#unless venue.menu.mobileUrl}}
       <h4>Menu</h4>
       <p>No menu available</p>
