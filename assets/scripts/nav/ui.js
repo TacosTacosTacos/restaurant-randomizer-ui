@@ -26,6 +26,7 @@ const navSigningIn = () => {
 
     // Bring users to the display page & pull fourSquareData
     $('#secRestaurantDisplay').show()
+    $('.sk-cube-grid').show()
     dataDisplay.fourSquareDataRequest()
 
     // Enable Nav

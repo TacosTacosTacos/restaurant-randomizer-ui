@@ -109,7 +109,7 @@ const onDeletePreferences = function (event) {
 const onGetAddress = function (event) {
   if (navigator.geolocation) {
     $('#getAddress').prop('disabled', true)
-    console.log(navigator.geolocation.getCurrentPosition(locationRetrievedSuccessfully, preferenceUi.googleRetrievalFailure))
+    navigator.geolocation.getCurrentPosition(locationRetrievedSuccessfully, preferenceUi.googleRetrievalFailure)
   } else {
     // What to do if not supported at all
     preferenceUi.googleRetrievalFailure()

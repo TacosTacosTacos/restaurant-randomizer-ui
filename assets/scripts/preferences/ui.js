@@ -60,7 +60,7 @@ const preferenceDoNotExist = function () {
 }
 
 const googleRetrievalSuccess = function (data) {
-  $('#preferenceLocation').val(data.results[0].formatted_address)
+  $('#preferenceLocation').val(data.results[0].address_components[7].long_name)
   $('#getAddress').prop('disabled', false)
 }
 
