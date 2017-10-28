@@ -1,5 +1,6 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+$text-color-sub: #ff0000;
 
 .form-btm-pdng {
   padding-bottom: 1em;
@@ -15,6 +16,17 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 .hide-message {
   display: none;
+}
+
+legend{
+  padding-bottom: 1px;
+  margin-bottom: 3px;
+}
+
+.instructions {
+  color: $text-color-sub;
+  font-style: italic;
+  font-size: 1em;
 }
 
 .content {

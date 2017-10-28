@@ -38,7 +38,6 @@ Created by: Tacos-Tacos-Tacos
     </div>
   </nav>
 
-
   <!-- This is the initial page displayed to the user when they load the website.
 It is used for login and signup -->
   <section id="secHomeLoggedOut">
@@ -51,11 +50,11 @@ It is used for login and signup -->
         </div>
         <div class="form-group">
           <label for="email">Email: </label>
-          <input type="email" name="credentials[email]" placeholder="Email" required>
+          <input type="email" name="credentials[email]" placeholder="Email" autocomplete="no" required>
         </div>
         <div class="form-group">
           <label for="password">Password: </label>
-          <input type="password" name="credentials[password]" placeholder="Password" required>
+          <input type="password" name="credentials[password]" autocomplete="no" placeholder="Password" required>
         </div>
         <div class="form-group">
           <input type="submit" name="submit" class="btn btn-primary" value="Sign in!">
@@ -69,15 +68,15 @@ It is used for login and signup -->
         <div id="messageNew" class="form-group"></div>
         <div class="form-group">
           <label for="">Email: </label>
-          <input type="email" name="credentials[email]" class="usersignup" placeholder="Email" required>
+          <input type="email" name="credentials[email]" class="usersignup" placeholder="Email" autocomplete="no" required>
         </div>
         <div class="form-group">
           <label for="">Password: </label>
-          <input type="password" autocomplete="new-password" class="usersignup" name="credentials[password]" placeholder="Password" required>
+          <input type="password" autocomplete="no" class="usersignup" name="credentials[password]" placeholder="Password" required>
         </div>
         <div class="form-group">
           <label for="">Confirm Password: </label>
-          <input type="password" name="credentials[password_confirmation]" class="usersignup" placeholder="Password" required>
+          <input type="password" name="credentials[password_confirmation]" class="usersignup" placeholder="Password" autocomplete="no" required>
         </div>
         <div class="form-group">
           <input type="submit" name="submit" class="btn btn-primary" value="Sign up!">
@@ -91,23 +90,24 @@ It is used for login and signup -->
 
     <form id="changeRestaurantPreferences" class="col-xs-12 form-btm-pdng container">
       <fieldset>
-        <legend>Update Restaurant Preferences</legend>
+        <legend class="col-form-legend">Update Restaurant Preferences</legend>
+        <p class="instructions">Preference Information must be filled out and then saved before restaurant results are displayed</p>
         <div id="messageUpdatePreferences" class="form-group" style="display:none"></div>
         <div class="form-group">
-          <label for="">Your Saved Location</label>
+          <label for="">Your Saved Location<span style="color:red;">*</span>:</label>
           <input type="text" name="preference[location]" id="preferenceLocation" required>
           <br>
-          <button class="btn btn-default" id="getAddress">Get Current Address</button>
+          <button class="btn btn-default" id="getAddress">Retrieve Current Zip Code</button>
         </div>
 
         <div class="form-group">
-          <label for="">Search Radius (Miles):</label>
+          <label for="">Search Radius (Miles)<span style="color:red;">*</span>:</label>
           <input type="number" name="preference[search_radius]" id="preferenceSearchRadius" min="1" max="62" required>
         </div>
 <!-- Category ID and values correspond with database reference table values.
       Replace this with a API call on page load -->
         <div class="form-group">
-          <label for="">Restaraunt Categories:</label>
+          <label for="">Restaraunt Categories<span style="color:red;">*</span>:</label>
           <select multiple name="preferences[categories]" class="form-control categories" size="11" required>
           <option id="categoryId1" class="categoryOption" value="1">American</option>
           <option id="categoryId2" class="categoryOption" value="2">Chinese</option>
@@ -124,7 +124,7 @@ It is used for login and signup -->
           <p class="instructions">Hold down the Ctrl (Windows) / Command (Mac) button to select multiple options.</p>
         </div>
 
-        <input type="submit" name="submit" class="btn btn-primary" value="Create / Update Preferences">
+        <input type="submit" name="submit" class="btn btn-primary" value="Save Preferences">
       </fieldset>
     </form>
       <!-- Deletion Button to meet min requirements -->
