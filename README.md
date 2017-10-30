@@ -26,5 +26,9 @@ Based on my experience with the last project, I decided that I would rather focu
 ## List unsolved problems which would be fixed in future iterations.
 I would have made some improvements to the logic used in the code.  There are definitely things that can be made more efficient (ex. Preference / Category Logic).  If it wasn't for the project requirements, I would also rip out code that doesn't make much logically sense (aka the delete preference button). I would also spend some time on making the UI nicer.  The Google Maps iframe looks like garbage on mobile.
 
+I also decided to change my retrieve current address button into a retrieve current zip code button.  This is because Google sometimes didn't retrieve an address in a format that FourSquare liked.  Adding conversion logic to make the address format work with FourSquare would be nice, but I didn't have enough time to handle it.
+
+I was also notified that there is a rare bug where user sessions can overlap resulting in data from one person being returned to the other.  I wasn't able to recreate the bug, but I would like to handle that if it's not seen as something that rails handles by default.
+
 ## Link to wireframes and user stories.
 https://git.generalassemb.ly/TacosTacosTacos/full-stack-project-practice/blob/practice/practice.md

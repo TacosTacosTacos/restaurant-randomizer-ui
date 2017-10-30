@@ -17,6 +17,7 @@ $(() => {
 
 // Creates click events
 $(() => {
+  $('.usersignup').empty()
   authEvents.addHandlers()
   preferencesEvents.addHandlers()
 })
