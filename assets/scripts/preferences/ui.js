@@ -45,7 +45,7 @@ const preferenceChangeMade = function () {
   $('.sk-cube-grid').show()
   setTimeout(() => {
     dataDisplayEvents.fourSquareDataRequest()
-  }, 200)
+  }, 500)
 
   navUi.navHome()
 }
