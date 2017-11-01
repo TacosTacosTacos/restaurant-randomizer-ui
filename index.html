@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!-- Restaurant Randomizer - UI
+Created by: Tacos-Tacos-Tacos
+-->
+<html>
+
+<head>
+  <title>Restaurant Randomizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+
+<body class="container-fluid">
+
+  <!-- The navbar for the website.  Starts in a fully disabled state, but changes after login -->
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="#">Restaurant Randomizer</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="disabled home" id="navHome"><a href="#">Home</a></li>
+          <li class="disabled preferences" id="navPreferences"><a href="#">Preferences</a></li>
+          <li class="disabled signout" id="navSignOut"><a href="#">Sign Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- This is the initial page displayed to the user when they load the website.
+It is used for login and signup -->
+  <section id="secHomeLoggedOut">
+
+    <form id="sign-in" class="sign-in form-btm-pdng container col-xs-12">
+      <fieldset>
+        <legend>Existing User</legend>
+        <div class="form-group">
+          <div id="messageExisting" style="display:none" class="form-group alert-danger"></div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email: </label>
+          <input type="email" name="credentials[email]" placeholder="Email" autocomplete="no" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password: </label>
+          <input type="password" name="credentials[password]" autocomplete="no" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+          <input type="submit" name="submit" class="btn btn-primary" value="Sign in!">
+        </div>
+      </fieldset>
+    </form>
+
+    <form id="sign-up" class="col-xs-12" autocomplete="new-password">
+      <fieldset>
+        <legend>New User</legend>
+        <div id="messageNew" class="form-group"></div>
+        <div class="form-group">
+          <label for="">Email: </label>
+          <input type="email" name="credentials[email]" class="usersignup" placeholder="Email" autocomplete="no" required>
+        </div>
+        <div class="form-group">
+          <label for="">Password: </label>
+          <input type="password" autocomplete="no" class="usersignup" name="credentials[password]" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+          <label for="">Confirm Password: </label>
+          <input type="password" name="credentials[password_confirmation]" class="usersignup" placeholder="Password" autocomplete="no" required>
+        </div>
+        <div class="form-group">
+          <input type="submit" name="submit" class="btn btn-primary" value="Sign up!">
+        </div>
+      </fieldset>
+    </form>
+  </section>
+
+  <!-- This page is mainly used for changing passwords. -->
+  <section id="secUserPreferences" class="hide-section">
+
+    <form id="changeRestaurantPreferences" class="col-xs-12 form-btm-pdng container">
+      <fieldset>
+        <legend class="col-form-legend">Update Restaurant Preferences</legend>
+        <p class="instructions">Preference Information must be filled out and then saved before restaurant results are displayed</p>
+        <div id="messageUpdatePreferences" class="form-group" style="display:none"></div>
+        <div class="form-group">
+          <label for="">Your Saved Location<span style="color:red;">*</span>:</label>
+          <input type="text" name="preference[location]" id="preferenceLocation" required>
+          <br>
+          <button class="btn btn-default" id="getAddress">Retrieve Current Zip Code</button>
+        </div>
+
+        <div class="form-group">
+          <label for="">Search Radius (Miles)<span style="color:red;">*</span>:</label>
+          <input type="number" name="preference[search_radius]" id="preferenceSearchRadius" min="1" max="62" required>
+        </div>
+<!-- Category ID and values correspond with database reference table values.
+      Replace this with a API call on page load -->
+        <div class="form-group">
+          <label for="">Restaraunt Categories<span style="color:red;">*</span>:</label>
+          <select multiple name="preferences[categories]" class="form-control categories" size="11" required>
+          <option id="categoryId1" class="categoryOption" value="1">American</option>
+          <option id="categoryId2" class="categoryOption" value="2">Chinese</option>
+          <option id="categoryId3" class="categoryOption" value="3">Japanese</option>
+          <option id="categoryId4" class="categoryOption" value="4">Indian</option>
+          <option id="categoryId5" class="categoryOption" value="5">Korean</option>
+          <option id="categoryId6" class="categoryOption" value="6">Vietnamese</option>
+          <option id="categoryId7" class="categoryOption" value="7">German</option>
+          <option id="categoryId8" class="categoryOption" value="8">Greek</option>
+          <option id="categoryId9" class="categoryOption" value="9">Italian</option>
+          <option id="categoryId10" class="categoryOption" value="10">Mexican</option>
+          <option id="categoryId11" class="categoryOption" value="11">Middle Eastern</option>
+        </select>
+          <p class="instructions">Hold down the Ctrl (Windows) / Command (Mac) button to select multiple options.</p>
+        </div>
+
+        <input type="submit" name="submit" class="btn btn-primary" value="Save Preferences">
+      </fieldset>
+    </form>
+      <!-- Deletion Button to meet min requirements -->
+    <div class="col-xs-12">
+      <button value="Delete Existing Preferences" id="stupidDeletionButton" class="btn btn-primary">Delete Preferences</button>
+    </div>
+    <!-- Change Password -->
+    <form id="change-password" class="col-xs-12 container form-top-pdng">
+      <fieldset>
+        <legend>Change Your Password</legend>
+        <div id="messageChangePassword" class="form-group" style="display:none"></div>
+        <div class="form-group">
+          <label for="">Old Password:</label>
+          <input type="password" name="passwords[old]" class="chgpass" placeholder="Old Password" required>
+        </div>
+        <div class="form-group">
+          <label for="">New Password:</label>
+          <input type="password" name="passwords[new]" class="chgpass" placeholder="New Password" required>
+        </div>
+        <input type="submit" name="submit" class="btn btn-primary" value="Change Password">
+      </fieldset>
+    </form>
+
+  </section>
+
+  <!-- This section is for displaying the semi-randomly selected restaurant -->
+  <section id="secRestaurantDisplay" class="col-xs-12 hide-section">
+    <!-- Taken from Spinkit - http://tobiasahlin.com/spinkit/ -->
+      <div class="sk-cube-grid">
+        <div class="sk-cube sk-cube1"></div>
+        <div class="sk-cube sk-cube2"></div>
+        <div class="sk-cube sk-cube3"></div>
+        <div class="sk-cube sk-cube4"></div>
+        <div class="sk-cube sk-cube5"></div>
+        <div class="sk-cube sk-cube6"></div>
+        <div class="sk-cube sk-cube7"></div>
+        <div class="sk-cube sk-cube8"></div>
+        <div class="sk-cube sk-cube9"></div>
+      </div>
+      <!-- The div is appended to and loaded with information processed through handlebars -->
+        <div id="content" class="content col-xs-12">
+        </div>
+
+
+  </section>
+
+</body>
+
+</html>
