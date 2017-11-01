@@ -27,7 +27,9 @@ const navSigningIn = () => {
     // Bring users to the display page & pull fourSquareData
     $('#secRestaurantDisplay').show()
     $('.sk-cube-grid').show()
-    dataDisplay.fourSquareDataRequest()
+    setTimeout(() => {
+      dataDisplay.fourSquareDataRequest()
+    }, 500)
 
     // Enable Nav
     reuse.removeDisabledClassesNavArray(['.home', '.preferences', '.signout'])
