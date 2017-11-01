@@ -6,7 +6,6 @@ const navEvents = require('../nav/events.js')
 
 const signInSuccess = function (data) {
   store.user = data.user
-  console.log($('.usersignup'))
   $('.usersignup').val('')
   $('#messageExisting').hide()
   // Navigate the user to the appropriate section of the application

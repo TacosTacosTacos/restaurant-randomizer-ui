@@ -16,6 +16,10 @@ const navSigningIn = () => {
   // When the user has preferences, bring them to the display page
   // When the user doesn't have preferences bring them to the preferences page
   if (store.user.preference) {
+    // Show loading screen
+    $('#secRestaurantDisplay').show()
+    $('.sk-cube-grid').show()
+
     // Set form values
     $('#preferenceLocation').val(store.user.preference.location)
     $('#preferenceSearchRadius').val(store.user.preference.search_radius)
@@ -24,9 +28,8 @@ const navSigningIn = () => {
       $('#categoryId' + category.restaurant_category_id).prop('selected', true)
     })
 
-    // Bring users to the display page & pull fourSquareData
-    $('#secRestaurantDisplay').show()
-    $('.sk-cube-grid').show()
+    // Pull fourSquareData after a small delay
+
     setTimeout(() => {
       dataDisplay.fourSquareDataRequest()
     }, 500)
